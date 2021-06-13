@@ -19,22 +19,27 @@ const colors = [
 
 const startBtnEl = document.querySelector('[data-action="start"]');
 const stopBtnEl = document.querySelector('[data-action="stop"]');
+const bodyEl = document.querySelector('body');
 
 startBtnEl.addEventListener('click', onLaunchesColorSwitch);
 stopBtnEl.addEventListener('click', onStopColorSwitch);
 
-
-
-function onLaunchesColorSwitch() {
-
-};
-
-function onStopColorSwitch() {
-
-};
-
-
-
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+let intervalChangeColor = null;
+
+function onLaunchesColorSwitch() {
+  if (!intervalChangeColor) {
+    intervalChangeColor = setInterval(() => {
+      const randomColor = colors[randomIntegerFromInterval(0, colors.length - 1)]
+      bodyEl.style.backgroundColor = randomColor ;
+    }, 1000)
+  };
+};
+
+function onStopColorSwitch() {
+  clearInterval(intervalChangeColor);
+};
+
