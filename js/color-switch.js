@@ -41,5 +41,6 @@ function onLaunchesColorSwitch() {
 
 function onStopColorSwitch() {
   clearInterval(intervalChangeColor);
+  intervalChangeColor = null;
 };
 
